@@ -15,7 +15,7 @@ public class WeatherForecastApp {
             WeatherDataParser parser = new WeatherDataParser();
             List<WeatherData> weatherDataList = parser.parseWeatherData(jsonData);
 
-            // データを表示
+            // データを表示する
             for (WeatherData data : weatherDataList) {
                 LocalDateTime dateTime = LocalDateTime.parse(
                         data.getTime(),
