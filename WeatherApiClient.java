@@ -6,7 +6,7 @@ import java.net.URI;
 import java.net.URL;
 
 public class WeatherApiClient {
-    private static final String API_URL = "https://www.jma.go.jp/bosai/forecast/data/forecast/270000.json";
+    private static final String API_URL = "https://www.jma.go.jp/bosai/forecast/data/forecast/240000.json";
 
     public String fetchWeatherData() throws Exception {
         URI uri = new URI(API_URL);
