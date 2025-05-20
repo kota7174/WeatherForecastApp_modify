@@ -3,7 +3,6 @@ import java.net.URISyntaxException;
 import java.time.LocalDateTime;
 import java.time.format.DateTimeFormatter;
 import java.util.List;
-/*ksksk */
 public class WeatherForecastApp {
     public static void main(String[] args) {
         try {
