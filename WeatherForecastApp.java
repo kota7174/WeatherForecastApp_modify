@@ -4,8 +4,9 @@ import java.util.List;
 
 public class WeatherForecastApp {
     private static final String[][] AREAS = {
-        {"130000","東京"},
-        {"270000","大阪"},
+        {"210000","岐阜"},
+        {"220000","静岡"},
+        {"230000","愛知"},
         {"240000","三重"}
     };
 
