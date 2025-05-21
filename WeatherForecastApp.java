@@ -1,33 +1,35 @@
-import java.io.IOException;
-import java.net.URISyntaxException;
-import java.time.LocalDateTime;
-import java.time.format.DateTimeFormatter;
+import org.json.JSONArray;
+import org.json.JSONObject;
 import java.util.List;
+
 public class WeatherForecastApp {
-    public static void main(String[] args) {
-        try {
-            // WeatherApiClientを使用してデータを取得
-            WeatherApiClient apiClient = new WeatherApiClient();
-            String jsonData = apiClient.fetchWeatherData();
+    private static final String[][] AREAS = {
+        {"130000","東京"},
+        {"270000","大阪"},
+        {"240000","三重"}
+    };
 
-            // WeatherDataParserを使用してデータを解析
-            WeatherDataParser parser = new WeatherDataParser();
-            List<WeatherData> weatherDataList = parser.parseWeatherData(jsonData);
+    public static void main(String[] args){
+        WeatherApiClient apiClient = new WeatherApiClient();
+        WeatherDataParser parser = new WeatherDataParser();
 
-            // データを表示する
-            for (WeatherData data : weatherDataList) {
-                LocalDateTime dateTime = LocalDateTime.parse(
-                        data.getTime(),
-                        DateTimeFormatter.ISO_DATE_TIME);
-                System.out.println(
-                        dateTime.format(DateTimeFormatter.ofPattern("yyyy/MM/dd")) + " " + data.getWeather());
+        for(String[] area : AREAS) {
+            String code = area[0];
+            String name = area[1];
+
+            System.out.println("▼ " + name + " の天気予報 ----------------------");
+
+            try {
+                String jsonData = apiClient.fetchWeatherData(code);
+                List<WeatherData> weatherList = parser.parse(jsonData);
+                for (WeatherData data : weatherList) {
+                    System.out.println(data);
+                }
+            } catch (Exception e) {
+                System.err.println("エラー: " + e.getMessage());
             }
-        } catch (IOException | URISyntaxException e) {
-            e.printStackTrace();
-        } catch (Exception e) {
-            // fetchWeatherDataがスローするその他の例外を処理
-            System.err.println("データ取得中にエラーが発生しました: " + e.getMessage());
-            e.printStackTrace();
+
+            System.out.println("------------------------------------------\n");
         }
     }
 }
