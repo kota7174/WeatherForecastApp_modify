@@ -27,12 +27,12 @@ public class WeatherForecastApp {
                 for (WeatherData data : weatherList) {
                     System.out.println(data);
                 }
-                uranai.geturanai();
             } catch (Exception e) {
                 System.err.println("エラー: " + e.getMessage());
             }
 
             System.out.println("------------------------------------------\n");
         }
+        uranai.geturanai();
     }
 }

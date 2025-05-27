@@ -20,6 +20,7 @@ public class WeatherUranai {
     };
 
     public void geturanai(){
+        System.out.println("今日の運勢");
         for(int i = 0; i < 3; i++){
             Random rnd = new Random();
             int list[][] = new int[3][3];
@@ -35,7 +36,6 @@ public class WeatherUranai {
             while(list[0][2] == numcolor || list[1][2] == numcolor){
                 numcolor = (numcolor + 1) % 20;
             }
-            System.out.println("今日の運勢");
             System.out.println("第" + (i + 1) + "位は" + "「" + constellation[numcon] + "」\n"
                     + "　　ラッキーアイテムは" + "「" + luckyitem[numitem] + "」\n"
                     + "　　ラッキーカラーは" + "「" + luckycolor[numcolor] + "」");
