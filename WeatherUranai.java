@@ -1,6 +1,6 @@
 import java.util.Random;
 
-public class uranai {
+public class WeatherUranai {
     String[] constellation = {
         "おひつじ座", "おうし座", "ふたご座", "かに座", "しし座", "おとめ座",
         "てんびん座", "さそり座", "いて座", "やぎ座", "みずがめ座", "うお座"
@@ -26,13 +26,13 @@ public class uranai {
             int numcon = rnd.nextInt(12);
             int numitem = rnd.nextInt(50);
             int numcolor = rnd.nextInt(20);
-            if(list[0 + i][0] == numcon){
+            while(list[0][0] == numcon || list[1][0] == numcon){
                 numcon = (numcon + 1) % 12;
             }
-            if(list[0 + i][1] == numitem){
+            while(list[0][1] == numitem || list[1][1] == numitem){
                 numitem = (numitem + 1) % 50;
             }
-            if(list[0 + i][2] == numcolor){
+            while(list[0][2] == numcolor || list[1][2] == numcolor){
                 numcolor = (numcolor + 1) % 20;
             }
             System.out.println("今日の運勢");
