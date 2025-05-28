@@ -11,7 +11,7 @@ public class WeatherForecastApp {
     public static void main(String[] args) {
         printWeatherForecasts();
         KionForecast.printKionForecast();
-        WeatherUranai.printWeatherUranai();
+        WeatherMethodlist.printWeatherUranai();
     }
 
     private static void printWeatherForecasts() {
