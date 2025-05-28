@@ -14,6 +14,8 @@ public class WeatherForecastApp {
     }
 
     private static void printWeatherForecasts() {
+    public static void main(String[] args){
+        WeatherUranai uranai = new WeatherUranai();
         WeatherApiClient apiClient = new WeatherApiClient();
         WeatherDataParser parser = new WeatherDataParser();
 
@@ -35,5 +37,6 @@ public class WeatherForecastApp {
 
             System.out.println("------------------------------------------\n");
         }
+        uranai.geturanai();
     }
 }

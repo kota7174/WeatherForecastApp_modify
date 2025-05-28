@@ -7,7 +7,7 @@ import java.net.URL;
 
 public class WeatherApiClient {
     public String fetchWeatherData(String areaCode)throws Exception{
-        String apiUrl ="https://www.jma.go.jp/bosai/forecast/data/forecast/" + areaCode + ".json";
+        String apiUrl ="https://www.jma.go.jp/bosai/forecast/data/forecast/240000.json";
         URI uri = new URI(apiUrl);
         URL url = uri.toURL();
         HttpURLConnection connection = (HttpURLConnection) url.openConnection();
