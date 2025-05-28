@@ -1,20 +1,23 @@
-import org.json.JSONArray;
-import org.json.JSONObject;
 import java.util.List;
 
 public class WeatherForecastApp {
     private static final String[][] AREAS = {
-        {"210000","岐阜"},
-        {"220000","静岡"},
-        {"230000","愛知"},
-        {"240000","三重"}
+            { "210000", "岐阜" },
+            { "220000", "静岡" },
+            { "230000", "愛知" },
+            { "240000", "三重" }
     };
 
-    public static void main(String[] args){
+    public static void main(String[] args) {
+        printWeatherForecasts();
+        KionForecast.printKionForecast();
+    }
+
+    private static void printWeatherForecasts() {
         WeatherApiClient apiClient = new WeatherApiClient();
         WeatherDataParser parser = new WeatherDataParser();
 
-        for(String[] area : AREAS) {
+        for (String[] area : AREAS) {
             String code = area[0];
             String name = area[1];
 
