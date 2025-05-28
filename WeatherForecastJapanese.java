@@ -1,3 +1,9 @@
+import java.util.List;
+import org.json.JSONArray;
+import org.json.JSONObject;
+
+import java.io.IOException;
+
 public class WeatherForecastJapanese {
 
     public static void main(String[] args) throws IOException, InterruptedException {
@@ -23,7 +29,7 @@ public class WeatherForecastJapanese {
                 int code = weatherCodes.getInt(d);
                 double max = tempsMax.getDouble(d);
                 double min = tempsMin.getDouble(d);
-                String weather = WeatherMethodlist.printWeaher(code);
+                String weather = WeatherMethodlist.printWeather(code);
 
                 System.out.printf("%s: %s, 最低 %.1f°C, 最高 %.1f°C%n", date, weather, min, max);
             }

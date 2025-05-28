@@ -51,7 +51,7 @@ public class WeatherMethodlist {
         }
     }
     //天気情報
-    public static String printWeaher(int code) {
+    public static String printWeather(int code) {
         return switch (code) {
             case 0 -> "快晴";
             case 1, 2, 3 -> "曇り";
