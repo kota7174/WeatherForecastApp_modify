@@ -1,8 +1,8 @@
 import java.util.List;
-import org.json.JSONArray;
-import org.json.JSONObject;
-
 import java.io.IOException;
+import javax.swing.JFrame;
+import javax.swing.JEditorPane;
+import javax.swing.JScrollPane;
 
 public class WeatherForecastJapanese {
 
@@ -15,25 +15,20 @@ public class WeatherForecastJapanese {
 
         WeatherApiClient client = new WeatherApiClient();
 
-        for (WeatherData data : datas) {
-            JSONObject json = client.getWeatherForecast(data, 3);
+        String html = WeatherResultPrinter.getWeatherForecastsHtml(datas, client)
+                + WeatherMethodlist.getWeatherUranaiHtml();
 
-            JSONArray dates = json.getJSONObject("daily").getJSONArray("time");
-            JSONArray weatherCodes = json.getJSONObject("daily").getJSONArray("weathercode");
-            JSONArray tempsMax = json.getJSONObject("daily").getJSONArray("temperature_2m_max");
-            JSONArray tempsMin = json.getJSONObject("daily").getJSONArray("temperature_2m_min");
-
-            System.out.println("==== " + data.getName() + "の天気予報 ====");
-            for (int d = 0; d < dates.length(); d++) {
-                String date = dates.getString(d);
-                int code = weatherCodes.getInt(d);
-                double max = tempsMax.getDouble(d);
-                double min = tempsMin.getDouble(d);
-                String weather = WeatherMethodlist.printWeather(code);
-
-                System.out.printf("%s: %s, 最低 %.1f°C, 最高 %.1f°C%n", date, weather, min, max);
-            }
-            System.out.println();
-        }
+        javax.swing.SwingUtilities.invokeLater(() -> {
+            JFrame frame = new JFrame("天気予報＆占い（HTML表示）");
+            JEditorPane editorPane = new JEditorPane("text/html",
+                    "<html><body style='font-family:sans-serif; background:#f7fafd; margin:0; padding:24px;'>" + html
+                            + "</body></html>");
+            editorPane.setEditable(false);
+            frame.getContentPane().add(new JScrollPane(editorPane));
+            frame.setSize(700, 800);
+            frame.setLocationRelativeTo(null);
+            frame.setDefaultCloseOperation(JFrame.EXIT_ON_CLOSE);
+            frame.setVisible(true);
+        });
     }
 }
