@@ -106,7 +106,32 @@ public class WeatherForecastJapanese {
                             .orElse(null);
                     if (found != null) {
                         String imagePath = WeatherMethodlist.getPrefImagePathByData(found);
-                        WeatherData.weatherUtil.showWeather(panel, found, imagePath);
+                        // --- アニメーション付き天気表示 ---
+                        JPanel glass = new JPanel();
+                        glass.setOpaque(true);
+                        glass.setBackground(new Color(245, 250, 255, 0));
+                        glass.setBounds(0, 0, panel.getWidth(), panel.getHeight());
+                        panel.setLayout(null);
+                        panel.add(glass, 0);
+                        panel.revalidate();
+                        panel.repaint();
+
+                        Timer timer = new Timer(15, null);
+                        timer.addActionListener(e -> {
+                            int alpha = glass.getBackground().getAlpha();
+                            if (alpha < 220) {
+                                glass.setBackground(new Color(245, 250, 255, Math.min(alpha + 30, 255)));
+                                glass.repaint();
+                            } else {
+                                timer.stop();
+                                panel.removeAll();
+                                panel.setLayout(new BoxLayout(panel, BoxLayout.Y_AXIS));
+                                WeatherData.weatherUtil.showWeather(panel, found, imagePath);
+                                panel.revalidate();
+                                panel.repaint();
+                            }
+                        });
+                        timer.start();
                     }
                 }
             });
@@ -152,7 +177,32 @@ public class WeatherForecastJapanese {
         showHome.run();
         homeBtn.addActionListener(new java.awt.event.ActionListener() {
             public void actionPerformed(java.awt.event.ActionEvent evt) {
-                showHome.run();
+                // --- アニメーション付きホーム画面遷移 ---
+                JPanel glass = new JPanel();
+                glass.setOpaque(true);
+                glass.setBackground(new Color(245, 250, 255, 0));
+                glass.setBounds(0, 0, panel.getWidth(), panel.getHeight());
+                panel.setLayout(null);
+                panel.add(glass, 0);
+                panel.revalidate();
+                panel.repaint();
+
+                Timer timer = new Timer(30, null); // ← 30msに変更
+                timer.addActionListener(e -> {
+                    int alpha = glass.getBackground().getAlpha();
+                    if (alpha < 220) {
+                        glass.setBackground(new Color(245, 250, 255, Math.min(alpha + 15, 255))); // ← 増加量15に変更
+                        glass.repaint();
+                    } else {
+                        timer.stop();
+                        panel.removeAll();
+                        panel.setLayout(new BoxLayout(panel, BoxLayout.Y_AXIS));
+                        showHome.run();
+                        panel.revalidate();
+                        panel.repaint();
+                    }
+                });
+                timer.start();
             }
         });
 
