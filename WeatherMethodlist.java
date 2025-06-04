@@ -6,7 +6,7 @@ import org.json.JSONArray;
 import org.json.JSONObject;
 
 public class WeatherMethodlist {
-    // 星座占い
+    // 星座占い（staticメソッド＆String型で結果を返す）
     public static String printUranai() {
         String[] constellation = {
                 "おひつじ座", "おうし座", "ふたご座", "かに座", "しし座", "おとめ座",
@@ -55,6 +55,7 @@ public class WeatherMethodlist {
         }
         return sb.toString();
     }
+
     // 天気情報
     public static String printWeather(int code) {
         return switch (code) {
