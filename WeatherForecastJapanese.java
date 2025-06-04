@@ -30,6 +30,7 @@ public class WeatherForecastJapanese {
             new WeatherData("熊本", 32.7898, 130.7417), new WeatherData("大分", 33.2382, 131.6126),
             new WeatherData("宮崎", 31.9111, 131.4239), new WeatherData("鹿児島", 31.5602, 130.5581),
             new WeatherData("沖縄", 26.2124, 127.6809));
+
     public static void main(String[] args) throws IOException, InterruptedException {
         // --- Swingウィンドウ初期化 ---
         JFrame frame = new JFrame("日本の天気予報");
@@ -77,6 +78,8 @@ public class WeatherForecastJapanese {
             frame.setLocationRelativeTo(null);
             frame.setDefaultCloseOperation(JFrame.EXIT_ON_CLOSE);
             frame.setVisible(true);
+        }); // invokeLaterの閉じカッコ
+
         // --- ホーム画面表示メソッド ---
         Runnable showHome = () -> {
             panel.removeAll();
@@ -101,6 +104,7 @@ public class WeatherForecastJapanese {
             JLabel searchLabel = new JLabel("都道府県選択: ");
             searchLabel.setFont(new Font("Yu Gothic UI", Font.BOLD, 28));
             searchLabel.setForeground(new Color(0, 80, 180));
+            // --- PREFSリストから都道府県名配列を作成 ---
             String[] prefNames = PREFS.stream().map(WeatherData::getName).toArray(String[]::new);
             JComboBox<String> prefCombo = new JComboBox<>(prefNames);
             prefCombo.setFont(new Font("Yu Gothic UI", Font.PLAIN, 24));
@@ -129,7 +133,7 @@ public class WeatherForecastJapanese {
             // --- 占い ---
             String uranaiResult;
             try {
-                uranaiResult = WeatherMethodlist.printUranai();
+                uranaiResult = WeatherMethodlist.getWeatherUranaiHtml();
             } catch (Exception ex) {
                 uranaiResult = "占い結果の取得に失敗しました";
             }
