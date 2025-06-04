@@ -1,7 +1,5 @@
-import javax.swing.BorderFactory;
-import javax.swing.ImageIcon;
-import javax.swing.JLabel;
-import javax.swing.JPanel;
+import javax.swing.*;
+import java.awt.*;
 
 public class WeatherData {
     private final String name;
@@ -57,9 +55,9 @@ public class WeatherData {
             return subRow;
         }
     }
- 
+
     public static UranaiUtil uranaiUtil = new UranaiUtil();
- 
+
     // --- 画像追加メソッド ---
     public static class MyImageUtil {
         public void addImage(JPanel panel, String path, int width) {
@@ -74,9 +72,9 @@ public class WeatherData {
             }
         }
     }
- 
+
     public static MyImageUtil imageUtil = new MyImageUtil();
- 
+
     // --- 天気表示メソッド ---
     public static class WeatherUtil {
         public void showWeather(JPanel panel, WeatherData data, String imagePath) {
@@ -131,6 +129,6 @@ public class WeatherData {
             }
         }
     }
- 
+
     public static WeatherUtil weatherUtil = new WeatherUtil();
 }
