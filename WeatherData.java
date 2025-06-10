@@ -108,10 +108,6 @@ public class WeatherData {
                     String uvStr = (uvIndex != null && d < uvIndex.length())
                             ? String.format(", 紫外線指数 %.1f", uvIndex.getDouble(d))
                             : "";
-                    String weatherImagePath = WeatherMethodlist.getWeatherImagePath(weather);
-                    if (weatherImagePath != null) {
-                        imageUtil.addImage(panel, weatherImagePath, 80);
-                    }
                     JLabel infoLabel = new JLabel(String.format("%s: %s, 最低 %.1f°C, 最高 %.1f°C%s%s", date, weather, min,
                             max, precipStr, uvStr));
                     infoLabel.setFont(new java.awt.Font("Yu Gothic UI", java.awt.Font.PLAIN, 30));

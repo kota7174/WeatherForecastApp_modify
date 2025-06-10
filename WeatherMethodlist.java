@@ -76,24 +76,6 @@ public class WeatherMethodlist {
         };
     }
 
-    // 天気画像取得
-    public static String getWeatherImagePath(String weather) {
-        switch (weather) {
-            case "快晴":
-                return "image/sunny.png";
-            case "曇り":
-                return "image/cloudy.png";
-            case "雨":
-                return "image/rain.png";
-            case "雪":
-                return "image/snow.png";
-            case "雷雨":
-                return "image/thunder.png";
-            default:
-                return null;
-        }
-    }
-
     // 星座画像取得
     public static String getSeizaImageFile(String seiza) {
         String fileName;

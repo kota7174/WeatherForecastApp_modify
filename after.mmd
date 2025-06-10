@@ -1,21 +1,30 @@
 classDiagram
-    class WeatherForecastApp {
-        + main(String[] args)
+    class WeatherForecastJapanese {
+        +main(String[] args)
     }
-
     class WeatherApiClient {
-        + fetchWeatherData() String
+        +getWeatherForecast(WeatherData, int): JSONObject
     }
-
-    class WeatherDataParser {
-        + parseWeatherData(String jsonData) List<WeatherData>
-    }
-
     class WeatherData {
-        + getTime() String
-        + getWeather() String
+        +getName(): String
+        +getLatitude(): double
+        +getLongitude(): double
+        +UranaiUtil
+        +MyImageUtil
+        +WeatherUtil
     }
-
-    WeatherForecastApp --> WeatherApiClient : uses
-    WeatherForecastApp --> WeatherDataParser : uses
-    WeatherDataParser --> WeatherData : creates
+    class WeatherMethodlist {
+        +printUranai(): String
+        +printWeather(int): String
+        +getWeatherImagePath(String): String
+        +getSeizaImageFile(String): String
+        +getPrefImagePathByData(WeatherData): String
+        +getWeatherHtmlTable(WeatherData): String
+    }
+    WeatherForecastJapanese --> WeatherApiClient : uses
+    WeatherForecastJapanese --> WeatherData : uses
+    WeatherForecastJapanese --> WeatherMethodlist : uses
+    WeatherApiClient --> WeatherData : uses
+    WeatherData o-- WeatherData.UranaiUtil
+    WeatherData o-- WeatherData.MyImageUtil
+    WeatherData o-- WeatherData.WeatherUtil

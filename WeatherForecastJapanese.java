@@ -293,7 +293,7 @@ public class WeatherForecastJapanese {
                 String uvStr = (uvIndex != null && d < uvIndex.length())
                         ? String.format("☀️ UV指数 %.1f", uvIndex.getDouble(d))
                         : "";
-                String weatherImagePath = WeatherMethodlist.getWeatherImagePath(weather);
+                
 
                 JPanel row = new JPanel();
                 row.setOpaque(false);
@@ -306,15 +306,6 @@ public class WeatherForecastJapanese {
                 dateLabel.setForeground(new Color(80, 80, 120));
                 row.add(dateLabel);
                 row.add(Box.createHorizontalStrut(18));
-
-                // 天気アイコン
-                if (weatherImagePath != null) {
-                    ImageIcon wicon = new ImageIcon(weatherImagePath);
-                    int w = 48, h = wicon.getIconHeight() * w / wicon.getIconWidth();
-                    Image wimg = wicon.getImage().getScaledInstance(w, h, Image.SCALE_SMOOTH);
-                    row.add(new JLabel(new ImageIcon(wimg)));
-                    row.add(Box.createHorizontalStrut(8));
-                }
 
                 // 天気名
                 JLabel weatherLabel = new JLabel(weather);
