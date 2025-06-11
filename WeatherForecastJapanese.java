@@ -122,6 +122,33 @@ public class WeatherForecastJapanese {
         homeBtn.addActionListener(evt -> showHomeWithFade(panel, showHome));
 
         frame.setVisible(true);
+
+        // --- マッチョ画像を右下に表示 ---
+        String machoImg = "image/マッチョ/アナウンサー.png";
+        if (new java.io.File(machoImg).exists()) {
+            ImageIcon machoIcon = new ImageIcon(machoImg);
+            int imgW = 400, imgH = machoIcon.getIconHeight() * imgW / machoIcon.getIconWidth();
+            Image scaledMacho = machoIcon.getImage().getScaledInstance(imgW, imgH, Image.SCALE_SMOOTH);
+            JLabel machoLabel = new JLabel(new ImageIcon(scaledMacho));
+            machoLabel.setSize(imgW, imgH);
+            machoLabel.setOpaque(false);
+            machoLabel.setVisible(true);
+            // レイヤードペインに追加
+            JLayeredPane layeredPane = frame.getLayeredPane();
+            layeredPane.add(machoLabel, JLayeredPane.PALETTE_LAYER);
+            // 右下に配置するメソッド
+            Runnable updateMachoPosition = () -> {
+                int x = frame.getWidth() - imgW - 100;
+                int y = frame.getHeight() - imgH - 20;
+                machoLabel.setLocation(Math.max(x, 0), Math.max(y, 0));
+            };
+            frame.addComponentListener(new java.awt.event.ComponentAdapter() {
+                public void componentResized(java.awt.event.ComponentEvent e) {updateMachoPosition.run();}
+                public void componentMoved(java.awt.event.ComponentEvent e) {updateMachoPosition.run();}
+                public void componentShown(java.awt.event.ComponentEvent e) {updateMachoPosition.run();}
+            });
+            updateMachoPosition.run();
+        }
     }
 
     // --- ホーム画面カード生成 ---
@@ -137,7 +164,7 @@ public class WeatherForecastJapanese {
         // タイトル
         JLabel titleLabel = new JLabel("今日のトレーニングコンディションは晴れのちパワーアップ！");
         titleLabel.setFont(new Font("Yu Gothic UI", Font.BOLD, 38));
-        titleLabel.setForeground(new Color(0, 120, 220));
+        titleLabel.setForeground(new Color(255, 50, 0));
         titleLabel.setAlignmentX(Component.CENTER_ALIGNMENT);
         homeCard.add(titleLabel);
         homeCard.add(Box.createVerticalStrut(18));
@@ -293,7 +320,6 @@ public class WeatherForecastJapanese {
                 String uvStr = (uvIndex != null && d < uvIndex.length())
                         ? String.format("☀️ UV指数 %.1f", uvIndex.getDouble(d))
                         : "";
-                
 
                 JPanel row = new JPanel();
                 row.setOpaque(false);
