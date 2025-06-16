@@ -79,23 +79,13 @@ public class WeatherMethodlist {
     // 星座画像取得
     public static String getSeizaImageFile(String seiza) {
         String path = "image/星座/" + seiza + ".png";
-        java.io.File file = new java.io.File(path);
-        if (file.exists()) {
-            return path;
-        }
-        return null;
+        return path;
     }
 
     // 都道府県画像取得
     public static String getPrefImagePathByData(WeatherData data) {
         String name = data.getName();
         String path = "image/都道府県/" + name + ".png";
-        java.io.File file = new java.io.File(path);
-        if (file.exists())
-            return path;
-        String png = "image/" + name + ".png";
-        if (new java.io.File(png).exists())
-            return png;
-        return null;
+        return path;
     }
 }
