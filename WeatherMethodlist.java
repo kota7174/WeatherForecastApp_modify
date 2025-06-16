@@ -84,8 +84,7 @@ public class WeatherMethodlist {
 
     // 都道府県画像取得
     public static String getPrefImagePathByData(WeatherData data) {
-        String name = data.getName();
-        String path = "image/都道府県/" + name + ".png";
+        String path = "image/都道府県/" + data + ".png";
         return path;
     }
 }
