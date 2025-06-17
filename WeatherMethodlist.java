@@ -1,9 +1,5 @@
 import java.util.Random;
 import java.time.LocalDate;
-import javax.swing.*;
-import java.awt.*;
-import org.json.JSONArray;
-import org.json.JSONObject;
 
 public class WeatherMethodlist {
     // 星座占い（staticメソッド＆String型で結果を返す）
@@ -84,7 +80,7 @@ public class WeatherMethodlist {
 
     // 都道府県画像取得
     public static String getPrefImagePathByData(WeatherData data) {
-        String path = "image/都道府県/" + data + ".png";
+        String path = "image/都道府県/" + data.getName() + ".png";
         return path;
     }
 }
