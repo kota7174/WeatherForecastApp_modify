@@ -44,8 +44,7 @@ public class WeatherForecastJapanese {
         panel.setLayout(new BoxLayout(panel, BoxLayout.Y_AXIS));
         panel.setBackground(new Color(245, 250, 255));
         frame.add(new JScrollPane(panel));
-
-        // 上部パネル（ホームボタン＋都道府県選択）
+        // ホームボタンの設定
         JButton homeBtn = new JButton("ホームに戻る");
         homeBtn.setFont(new Font("Yu Gothic UI", Font.BOLD, 36));
         homeBtn.setBackground(new Color(120, 180, 255));
@@ -53,13 +52,18 @@ public class WeatherForecastJapanese {
         homeBtn.setFocusPainted(false);
         homeBtn.setBorder(BorderFactory.createEmptyBorder(16, 36, 16, 36));
         homeBtn.setCursor(new Cursor(Cursor.HAND_CURSOR));
-
+        
+        //都道府県の選択ラベルの設定
         JLabel globalSearchLabel = new JLabel("都道府県天気予報: ");
         globalSearchLabel.setFont(new Font("Yu Gothic UI", Font.BOLD, 22));
         globalSearchLabel.setForeground(new Color(0, 80, 180));
         String[] globalPrefNames = PREFS.stream().map(WeatherData::getName).toArray(String[]::new);
+        
+        //都道府県コンボボックスの設定
         JComboBox<String> globalPrefCombo = new JComboBox<>(globalPrefNames);
         globalPrefCombo.setFont(new Font("Yu Gothic UI", Font.PLAIN, 20));
+        
+        //表示ボタンの設定
         JButton globalSearchBtn = new JButton("表示");
         globalSearchBtn.setFont(new Font("Yu Gothic UI", Font.BOLD, 20));
         globalSearchBtn.setBackground(new Color(120, 180, 255));
@@ -67,6 +71,7 @@ public class WeatherForecastJapanese {
         globalSearchBtn.setFocusPainted(false);
         globalSearchBtn.setCursor(new Cursor(Cursor.HAND_CURSOR));
 
+        //上部パネルの作成と設定
         JPanel globalPanel = new JPanel(new FlowLayout(FlowLayout.LEFT));
         globalPanel.setBackground(new Color(200, 220, 255));
         globalPanel.add(homeBtn);
