@@ -1,9 +1,5 @@
 import java.util.Random;
 import java.time.LocalDate;
-import javax.swing.*;
-import java.awt.*;
-import org.json.JSONArray;
-import org.json.JSONObject;
 
 public class WeatherMethodlist {
     // 星座占い（staticメソッド＆String型で結果を返す）

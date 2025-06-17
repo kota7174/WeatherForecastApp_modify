@@ -110,7 +110,7 @@ public class WeatherForecastJapanese {
         showHome.run();
 
         // 天気予報表示（都道府県選択時）
-        globalSearchBtn.addActionListener(e -> {
+        globalSearchBtn.addActionListener(_ -> {
             String selected = (String) globalPrefCombo.getSelectedItem();
             WeatherData found = PREFS.stream().filter(d -> d.getName().equals(selected)).findFirst().orElse(null);
             if (found != null) {
@@ -119,7 +119,7 @@ public class WeatherForecastJapanese {
         });
 
         // ホームボタン（フェードインアニメーションでホーム画面へ）
-        homeBtn.addActionListener(evt -> showHomeWithFade(panel, showHome));
+        homeBtn.addActionListener(_ -> showHomeWithFade(panel, showHome));
 
         frame.setVisible(true);
 
@@ -223,7 +223,7 @@ public class WeatherForecastJapanese {
         panel.repaint();
 
         Timer timer = new Timer(15, null);
-        timer.addActionListener(ev -> {
+        timer.addActionListener(_ -> {
             int alpha = glass.getBackground().getAlpha();
             if (alpha < 220) {
                 glass.setBackground(new Color(245, 250, 255, Math.min(alpha + 30, 255)));
@@ -397,7 +397,7 @@ public class WeatherForecastJapanese {
         panel.repaint();
 
         Timer timer = new Timer(15, null);
-        timer.addActionListener(e -> {
+        timer.addActionListener(_ -> {
             int alpha = glass.getBackground().getAlpha();
             if (alpha < 220) {
                 glass.setBackground(new Color(245, 250, 255, Math.min(alpha + 30, 255)));
